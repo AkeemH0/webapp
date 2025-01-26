@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block main %}
+<!-- Your content goes here -->
+<h2>{{ "Add" if movie is none else "Update" }} Movie</h2>
+<form action="{{url_for('persist_movie')}}" method="post">
+    <input type="hidden" name="id" value="{{ movie[0] if movie is not none else '' }}">
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" name="title" value="{{ movie[1] if movie is not none else '' }}"> 
+    </div>
+    <div class="form-group">
+        <label for="genre">Director</label>
+        <input type="text" class="form-control" id="director" name="director" value="{{ movie[2] if movie is not none else '' }}"> 
+    </div>
+    <div class="form-group">
+        <label for="rating">Year</label>
+        <input type="text" class="form-control" id="year" name="year" value="{{ movie[3] if movie is not none else '' }}">   
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a href="{{url_for('home')}}" class="btn btn-secondary">Cancel</a>  
+</form>
+
+{% endblock %}

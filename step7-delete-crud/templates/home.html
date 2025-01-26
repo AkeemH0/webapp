@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block header%}{%endblock%}
+{%block nav%}{%endblock%}
+
+{%block main%}
+
+<h2>What's on?</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Year</th>
+                        <th>Director</th>
+                        <td colspan="2">Actions</td>
+                    </tr>
+                </thead>
+                {% for movie in movie_list %}
+                <tr>
+                    <td>{{ movie[0] }}</td>
+                    <td>{{ movie[1] }}</td>
+                    <td>{{ movie[2] }}</td>
+                    <td>{{ movie[3] }}</td>
+                    <td>
+                        <form action="{{url_for('edit_movie', movie_id=movie[0]) }}" method="get">
+                            <button type="submit" class="btn btn-secondary">Edit</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="{{url_for('delete_movie', movie_id=movie[0]) }}" method="get">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>    
+                {% endfor %}
+            </table>
+{%endblock%}
+{%block footer%}{%endblock%}
